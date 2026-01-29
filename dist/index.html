@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximus Magnus — Junior Frontend</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header id="home">
+    <div class="hero">
+        <h1>> Maximus Magnus<span class="cursor">_</span></h1>
+        <p class="subtitle">Junior Frontend Developer</p>
+        <p class="description">
+            Верстаю адаптивные интерфейсы.  
+            Чистый код. Предсказуемый результат.
+        </p>
+    </div>
+</header>
+
+<main>
+
+    <!-- SKILLS -->
+    <section class="card" id="skills">
+        <h2>// Skills</h2>
+        <div class="skills">
+            <span>HTML5</span>
+            <span>CSS3 / SCSS</span>
+            <span>JavaScript (ES6+)</span>
+            <span>Responsive Design</span>
+            <span>Git / GitHub</span>
+            <span>Gulp</span>
+            <span>Figma</span>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="card" id="projects">
+        <h2>// Projects</h2>
+
+        <div class="project">
+            <div class="project-info">
+                <h3>> business_card</h3>
+                <p>Сайт-визитка для видеомонтажера</p>
+                <p class="stack">HTML / CSS / JavaScript</p>
+
+                <a href="https://business-card-01.vercel.app/"
+                   target="_blank"
+                   class="btn-terminal">
+                    open()
+                </a>
+            </div>
+
+            <div class="project-preview">
+                <img src="img/business-card-preview.jpg" alt="Business card preview">
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-info">
+                <h3>> landing_page</h3>
+                <p>Адаптивный лендинг по макету из Figma</p>
+                <p class="stack">HTML / CSS / JS</p>
+
+                <a href="#"
+                   target="_blank"
+                   class="btn-terminal">
+                    open()
+                </a>
+            </div>
+
+            <div class="project-preview">
+                <img src="img/placeholder.jpg" alt="Landing preview">
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CONTACT (ОБНОВЛЁННЫЙ БЛОК С МОДАЛКОЙ) -->
+    <section class="card" id="contact">
+        <h2>// Contact</h2>
+        <p>Готов к новым задачам и небольшим проектам.</p>
+        
+        <!-- Кнопка открытия модалки -->
+        <button id="contactBtn" class="btn-terminal">send_request()</button>
+        
+        <p class="form-note">
+            Нажмите кнопку, чтобы обсудить проект. Отправляя заявку, вы соглашаетесь на обработку данных.
+        </p>
+    </section>
+
+</main>
+
+<!-- МОДАЛЬНОЕ ОКНО (ДОБАВЛЕНО НОВОЕ) -->
+<div id="modalOverlay" class="modal-overlay"></div>
+<div id="contactModal" class="modal">
+    <div class="modal-header">
+        <h3>// Отправить заявку</h3>
+        <button id="closeModal" class="modal-close">&times;</button>
+    </div>
+    
+    <form id="contactForm" class="modal-form">
+        <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Ваше имя *" required>
+        </div>
+        
+        <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email">
+        </div>
+        
+        <div class="form-group" id="phoneGroup">
+            <input type="tel" id="phone" name="phone" placeholder="Телефон * (+38 XXX XXX XX XX)" required>
+            <small class="error-message" id="phoneError">Введите корректный номер</small>
+        </div>
+        
+        <div class="form-group">
+            <select id="service" name="service" required>
+                <option value="">Тип проекта *</option>
+                <option value="Лендинг">Лендинг</option>
+                <option value="Сайт-визитка">Сайт-визитка</option>
+                <option value="Интернет-магазин">Интернет-магазин</option>
+                <option value="Портфолио">Портфолио</option>
+                <option value="Доработка">Доработка сайта</option>
+                <option value="Другое">Другое</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" id="budget" name="budget" placeholder="Бюджет (примерно)">
+        </div>
+        
+        <div class="form-group">
+            <textarea id="message" name="message" rows="4" placeholder="Опишите задачу..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-submit">
+            <span class="btn-text">Отправить заявку</span>
+            <span class="btn-loading" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.3"/>
+                    <path d="M12 2C14.2091 2 16.2091 2.89553 17.6569 4.34315" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </span>
+        </button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2026 Maximus Magnus</p>
+    <p class="muted">Junior Frontend · Freelance</p>
+</footer>
+
+<!-- Подключение скриптов -->
+<script src="js/main.js"></script>
+<script src="js/form.js"></script> <!-- НОВЫЙ ФАЙЛ С ФОРМОЙ -->
+</body>
+</html>

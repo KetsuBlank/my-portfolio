@@ -1,0 +1,392 @@
+:root {
+    --bg: #05080d;
+    --panel: #0b0f14;
+    --text: #c9f6d3;
+    --muted: #7ee0b0;
+    --accent: #00ff88;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* ================= HEADER ================= */
+header {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.cursor {
+    animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.description {
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+/* ================= MAIN ================= */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 40px 20px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid rgba(0,255,136,.25);
+    border-radius: 10px;
+    padding: 28px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 0 25px rgba(0,255,136,.12);
+    margin-bottom: 32px;
+}
+
+.card h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+/* ================= SKILLS ================= */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skills span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 4px 8px;
+    border: 1px solid rgba(0,255,136,.4);
+    border-radius: 4px;
+    color: var(--accent);
+}
+
+/* ================= PROJECTS ================= */
+.project {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,255,136,.15);
+    margin-bottom: 24px;
+}
+
+.project-info h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+.project-info p {
+    font-size: 13px;
+}
+
+.stack {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+/* terminal button */
+.btn-terminal {
+    display: inline-block;
+    padding: 6px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    border: 1px solid rgba(0,255,136,.4);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.btn-terminal:hover {
+    background: rgba(0,255,136,.1);
+    box-shadow: 0 0 8px rgba(0,255,136,.5);
+}
+
+/* preview */
+.project-preview img {
+    width: 100%;
+    border-radius: 4px;
+    opacity: .75;
+    transition: .3s;
+}
+
+.project:hover .project-preview img {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    margin-top: 12px;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: .2s;
+}
+
+.btn:hover {
+    box-shadow: 0 0 14px rgba(0,255,136,.6);
+    transform: translateY(-1px);
+}
+
+/* ================= FOOTER ================= */
+footer {
+    text-align: center;
+    padding: 24px 12px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+footer .muted {
+    opacity: .6;
+}
+
+/* ================= MODAL (НОВЫЕ СТИЛИ) ================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 8, 13, 0.95);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--panel);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s;
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+}
+
+.modal.active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.modal-header h3 {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 18px;
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.modal-form input:focus,
+.modal-form select:focus,
+.modal-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.15);
+}
+
+.modal-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-form input.error,
+.modal-form select.error {
+    border-color: #ff4444;
+}
+
+.modal-form input.success,
+.modal-form select.success {
+    border-color: #00ff88;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+}
+
+.btn-submit {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 15px;
+    opacity: 0.7;
+    text-align: center;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 520px) {
+    .project {
+        grid-template-columns: 1fr;
+    }
+
+    .project-preview {
+        order: -1;
+    }
+    
+    .modal {
+        width: 95%;
+        padding: 20px;
+    }
+}
