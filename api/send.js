@@ -14,23 +14,23 @@ module.exports = async (req, res) => {
     const { name, email, phone, service, budget, message } = req.body;
     console.log('📦 Данные формы:', { name, phone, service });
 
-    const text = \`
+    const text = `
 🏛️ НОВАЯ ЗАЯВКА С ПОРТФОЛИО!
 
-Имя: \${name}
-Email: \${email || 'не указано'}
-Телефон: \${phone || 'не указано'}
-Тип проекта: \${service}
-Бюджет: \${budget || 'не указано'}
+Имя: ${name}
+Email: ${email || 'не указано'}
+Телефон: ${phone || 'не указано'}
+Тип проекта: ${service}
+Бюджет: ${budget || 'не указано'}
 Сообщение:
-\${message || 'не указано'}
+${message || 'не указано'}
 
-🕐 \${new Date().toLocaleString('ru-RU')}
-    \`.trim();
+🕐 ${new Date().toLocaleString('ru-RU')}
+    `.trim();
 
     console.log('📤 Отправляем в Telegram через axios...');
     
-    const response = await axios.post(\`https://api.telegram.org/bot\${token}/sendMessage\`, {
+    const response = await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text: text
     });

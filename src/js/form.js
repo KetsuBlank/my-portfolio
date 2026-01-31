@@ -118,7 +118,7 @@ function initContactForm() {
         try {
             // Отправка данных на API (рабочая версия для Vercel)
             console.log('🔍 ОТПРАВКА НА API...');
-            const apiUrl = '/api/send';
+            const apiUrl = '/api/send.js';
             console.log('🔍 API URL:', apiUrl);
             
             const response = await fetch(apiUrl, {
