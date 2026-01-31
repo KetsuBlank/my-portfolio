@@ -1,6 +1,3 @@
-// ================= НАСТРОЙКИ =================
-const API_URL = '/api/send'; // Путь к API на Vercel
-
 // ================= ВАЛИДАЦИЯ ТЕЛЕФОНА =================
 function validatePhone(phone) {
     const phoneRegex = /^(\+38|38|0)?\d{9}$/;
@@ -21,8 +18,14 @@ function closeModal() {
     document.body.style.overflow = '';
     document.getElementById('contactForm').reset();
     // Сбрасываем стили валидации
-    document.getElementById('phoneGroup').classList.remove('error', 'success');
-    document.getElementById('phoneError').style.display = 'none';
+    const phoneGroup = document.getElementById('phoneGroup');
+    const phoneError = document.getElementById('phoneError');
+    if (phoneGroup) {
+        phoneGroup.classList.remove('error', 'success');
+    }
+    if (phoneError) {
+        phoneError.style.display = 'none';
+    }
 }
 
 // ================= ОСНОВНАЯ ФУНКЦИЯ =================
@@ -89,7 +92,7 @@ function initContactForm() {
             message: document.getElementById('message').value.trim()
         };
         
-        console.log('📤 Данные формы:', formData);
+        console.log('🔍 ДАННЫЕ ФОРМЫ:', formData);
         
         // Валидация обязательных полей
         if (!formData.name || !formData.phone || !formData.service) {
@@ -114,20 +117,24 @@ function initContactForm() {
         
         try {
             // Отправка данных на API (рабочая версия для Vercel)
-            console.log('📡 Отправка на API:', API_URL);
+            console.log('🔍 ОТПРАВКА НА API...');
+            const apiUrl = '/api/send';
+            console.log('🔍 API URL:', apiUrl);
             
-            const response = await fetch(API_URL, {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
             
-            const data = await response.json();
-            console.log('📨 Ответ API:', data);
+            console.log('🔍 СТАТУС ОТВЕТА:', response.status);
             
             if (!response.ok) {
-                throw new Error(data.error || `HTTP error! status: ${response.status}`);
+                throw new Error(`❌ HTTP error! status: ${response.status}`);
             }
+            
+            const data = await response.json();
+            console.log('🔍 ОТВЕТ API:', data);
             
             if (data.success) {
                 alert('✅ Заявка успешно отправлена!');
@@ -137,13 +144,15 @@ function initContactForm() {
             }
             
         } catch (error) {
-            console.error('💥 Ошибка отправки:', error);
+            console.error('❌ ОШИБКА FETCH:', error);
             
             // Пользовательские сообщения об ошибках
             if (error.message.includes('404')) {
                 alert('❌ API не настроен. Нужно добавить файл api/send.js на Vercel');
             } else if (error.message.includes('Failed to fetch')) {
                 alert('❌ Ошибка сети. Проверьте подключение к интернету');
+            } else if (error.message.includes('JSON')) {
+                alert('❌ Сервер вернул не JSON ответ. Проверьте API endpoint.');
             } else {
                 alert(`❌ Ошибка: ${error.message}`);
             }
