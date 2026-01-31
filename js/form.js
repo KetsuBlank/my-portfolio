@@ -145,17 +145,19 @@ function initContactForm() {
             
         } catch (error) {
             console.error('❌ ОШИБКА FETCH:', error);
-            
-            // Пользовательские сообщения об ошибках
-            if (error.message.includes('404')) {
-                alert('❌ API не настроен. Нужно добавить файл api/send.js на Vercel');
-            } else if (error.message.includes('Failed to fetch')) {
-                alert('❌ Ошибка сети. Проверьте подключение к интернету');
-            } else if (error.message.includes('JSON')) {
+    
+            // Улучшенные сообщения об ошибках
+        if (error.message.includes('404')) {
+                alert('❌ API endpoint не найден (404). Проверьте путь к API.');
+        } else if (error.message.includes('Failed to fetch')) {
+                alert('❌ Не удалось подключиться к серверу. Проверьте интернет соединение.');
+        } else if (error.message.includes('500')) {
+                alert('❌ Ошибка сервера (500). Проверьте логи Vercel и настройки переменных окружения.');
+        } else if (error.message.includes('JSON')) {
                 alert('❌ Сервер вернул не JSON ответ. Проверьте API endpoint.');
-            } else {
-                alert(`❌ Ошибка: ${error.message}`);
-            }
+        } else {
+        alert(`❌ Ошибка: ${error.message}`);
+    }
         } finally {
             // Восстанавливаем кнопку в исходное состояние
             btnText.style.display = 'block';
